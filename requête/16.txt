@@ -1,0 +1,3 @@
+Select primaryTitle from title_basics
+where runtimeMinutes in
+(Select max(runtimeMinutes) from title_basics)

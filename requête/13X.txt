@@ -1,0 +1,6 @@
+Select primaryTitle from title_basics
+where genres like "%Animation%" and tconst in
+(Select tconst from title_ratings
+where numVotes > 1000
+order by averageRating DESC)
+limit 10

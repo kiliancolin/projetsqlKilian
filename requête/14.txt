@@ -1,0 +1,2 @@
+Select count(primaryTitle) from title_basics
+where titleType = 'movie' and runtimeMinutes > 180

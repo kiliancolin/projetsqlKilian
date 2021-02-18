@@ -1,0 +1,10 @@
+#9) Qui a écrit le scénario du film Taxi sorti en 1998 ?
+Select primaryName
+from name_basics
+where nconst in
+(Select writers
+from title_writers
+where tconst in
+(Select tconst
+from title_basics
+where primaryTitle = 'Taxi' and startYear = 1998));

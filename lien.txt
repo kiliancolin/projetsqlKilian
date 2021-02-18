@@ -1,0 +1,13 @@
+https://github.com/kiliancolin/projetsqlKilian.git
+
+1) faire les requêtes
+
+2) faire une fonction pour stocker les requêtes dans un disctionnaire
+
+3) faire une fonction afficher qui execute la requête
+
+pip install winpython sql
+
+pip install pandas
+
+pip install sqlalchemy

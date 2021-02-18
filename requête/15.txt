@@ -1,0 +1,2 @@
+Select avg(runtimeMinutes) from title_basics
+where titleType = 'movie'
