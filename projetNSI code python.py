@@ -12,27 +12,52 @@ def fichier_txt_en_texte(fichier):
     """
     prend en argument le chemin d'un fichier texte et renvoie le contenu du fichier texte sous forme de chaîne de caractère.
     """
-    requete = open(fichier, "r")
-    return requete.read()
+    with open(fichier, "r") as requete:
+        return requete.read()
 
-def stocker_requete(n):
+def nom(n):
+    return "requête/" + str(n) + ".txt"
+
+def texte_en_liste(n):
+    requete = fichier_txt_en_texte(nom(n))
+    return requete.split()
+
+def liste_en_texte(liste):
     """
-    prend en argument le numéro de la requête et renvoie la question et la requête sésparé
+    prend en argument une liste et un indice et renvoie la même liste mais l'élement d'indice 'n' est transformé en texte.
     """
-    requete_en_une_ligne = ""     #créé une variable pour stocker la requête en une ligne
-    requete = fichier_txt_en_texte("requête/" + str(n) + ".txt")  #enregistre le texte du du fichier texte dans le répertoire requête
-    requete = requete.split()  #transforme la requête en tableau
+    texte = ""
+    for i in range(len(liste)):
+        texte = texte + str(liste[i]) + " "
+    return texte
+    
+def separer_requete_et_question(n):
+    """
+    prend en argument le numéro de la requête et renvoie la question et la requête sésparé.
+    """
+    requete = texte_en_liste(n)  #transforme la requête en tableau
     for i in range(len(requete)):   #cherche le moment où la question s'arrête et sépare la question de la requête
         if requete[i] == "?":
             question = requete[0:i+1]  #stock la question
             requete = requete[i+1:len(requete)]  #stock la réponse
             break  #stop la boucle quand la "?" est trouvé
-    for i in range(len(requete)): #transforme le tableau en chaine de caractère 
-        requete_en_une_ligne = requete_en_une_ligne + str(requete[i]) + " "
-    return requete_en_une_ligne
+    return [liste_en_texte(question),liste_en_texte(requete)]
+
+def creer_dictionnaire_vide():
+    dico = {}
+
+def stocker_requete(n, dico):
+    requete = separer_requete_et_question(n)
+    dico[requete[0]] = requete[1]
+    
+def afficher(dico):
+    return dico
+
+a = creer_dictionnaire_vide()
+stocker_requete(2,a)
+print(afficher(a))
 
 
-print(stocker_requete(2))
 
 
 """
