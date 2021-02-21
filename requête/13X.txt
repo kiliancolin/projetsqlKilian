@@ -1,6 +1,8 @@
-Select primaryTitle from title_basics
+#13) Quels sont les 10 films d’animation ayant reçu plus de 1000 votes les mieux notés ?
+Select primaryTitle 
+from title_basics
 where genres like "%Animation%" and tconst in
 (Select tconst from title_ratings
 where numVotes > 1000
 order by averageRating DESC)
-limit 10
+limit 10;

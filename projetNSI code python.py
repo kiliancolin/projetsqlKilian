@@ -45,6 +45,7 @@ def separer_requete_et_question(n):
 
 def creer_dictionnaire_vide():
     dico = {}
+    return dico
 
 def stocker_requete(n, dico):
     requete = separer_requete_et_question(n)
@@ -54,7 +55,19 @@ def afficher(dico):
     return dico
 
 a = creer_dictionnaire_vide()
+stocker_requete(1,a)
 stocker_requete(2,a)
+stocker_requete(3,a)
+stocker_requete(4,a)
+stocker_requete(5,a)
+stocker_requete(6,a)
+stocker_requete(7,a)
+stocker_requete(8,a)
+stocker_requete(9,a)
+stocker_requete(11,a)
+stocker_requete(12,a)
+stocker_requete(14,a)
+stocker_requete(15,a)
 print(afficher(a))
 
 
