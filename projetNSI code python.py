@@ -1,12 +1,12 @@
-"""
-import sqlite3
-conn = sqlite3.connect('imdb.db')
-c = conn.cursor()
-c.execute("select * from name_basics limit 10")
-for row in c:
-    print(row)
-conn.close()
-"""
+def exectute(requete,dico):
+    import sqlite3
+    conn = sqlite3.connect('imdb.db')
+    c = conn.cursor()
+    c.execute(dico[separer_requete_et_question(requete)[0]])
+    for row in c:
+        print(row)
+    conn.close()
+
 
 def fichier_txt_en_texte(fichier):
     """
@@ -68,7 +68,7 @@ stocker_requete(11,a)
 stocker_requete(12,a)
 stocker_requete(14,a)
 stocker_requete(15,a)
-print(afficher(a))
+exectute(1,a)
 
 
 
