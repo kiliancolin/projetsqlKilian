@@ -2,7 +2,7 @@ def exectute(requete,dico):
     import sqlite3
     conn = sqlite3.connect('imdb.db')
     c = conn.cursor()
-    c.execute(dico[separer_requete_et_question(requete)[0]])
+    c.execute(dico[1][1])
     for row in c:
         print(row)
     conn.close()
@@ -49,7 +49,7 @@ def creer_dictionnaire_vide():
 
 def stocker_requete(n, dico):
     requete = separer_requete_et_question(n)
-    dico[requete[0]] = requete[1]
+    dico[n] = [requete[0], requete[1]]
     
 def afficher(dico):
     return dico
@@ -68,6 +68,7 @@ stocker_requete(11,a)
 stocker_requete(12,a)
 stocker_requete(14,a)
 stocker_requete(15,a)
+#print(afficher(a))
 exectute(1,a)
 
 
