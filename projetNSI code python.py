@@ -1,4 +1,4 @@
-def exectute(requete,dico):
+def execute(requete,dico):
     import sqlite3
     conn = sqlite3.connect('imdb.db')
     c = conn.cursor()
@@ -7,6 +7,33 @@ def exectute(requete,dico):
         print(row)
     conn.close()
 
+import tkinter
+import os
+
+def afficher_table(table, titre ="", debut = 0, fin = None):
+	if titre != "":
+		titre += "\n\n"
+	#print(titre + texte_table(table, debut, fin))
+	affichage(titre + texte_table(table, debut, fin), titre)
+
+def affichage(texte, titre = "Requêtes tables"):
+	root = tkinter.Tk()
+	root.title(str(titre))
+	RWidth=root.winfo_screenwidth() - 100
+	RHeight=root.winfo_screenheight() - 100
+	root.geometry("%dx%d+50+0"%(RWidth, RHeight))
+	text=tkinter.Text(root, wrap = 'none')
+	scroll_x=tkinter.Scrollbar(text.master, orient='horizontal', command = text.xview)
+	scroll_x.config(command = text.xview)
+	text.configure(xscrollcommand = scroll_x.set)
+	scroll_x.pack(side = 'bottom', fill = 'x', anchor = 'w')
+	scroll_y = tkinter.Scrollbar(text.master)
+	scroll_y.config(command = text.yview)
+	text.configure(yscrollcommand = scroll_y.set)
+	scroll_y.pack(side = tkinter.RIGHT, fill = 'y')
+	text.insert("1.0", texte)
+	text.pack(side = tkinter.LEFT, expand = True, fill = tkinter.BOTH)
+	root.mainloop()
 
 def fichier_txt_en_texte(fichier):
     """
@@ -69,7 +96,7 @@ stocker_requete(12,a)
 stocker_requete(14,a)
 stocker_requete(15,a)
 #print(afficher(a))
-exectute(1,a)
+afficher_table(execute(1,a))
 
 
 
