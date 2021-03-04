@@ -9,6 +9,19 @@ def execute(requete,dico):
     conn.close()
     return l
 
+def taille_plus_grande_reponse(reponses):
+    l = reponses
+    maxi = 0
+    for i in range(len(l)):
+        if len(str(l[i])) > maxi:
+            maxi = len(str(l[i]))
+    return maxi
+
+def requete(n, dico):
+    r = execute(n,dico)
+    afficher_table(execute(n,dico),dico[n][0])
+
+
 import tkinter
 import os
 
@@ -19,9 +32,10 @@ def afficher_table(table, titre ="", debut = 0, fin = None):
 	affichage(titre + texte_table(table, debut, fin), titre)
     
 def texte_table(table, debut = 0, fin = None):
-  texte = ''
+  max = taille_plus_grande_reponse(table)
+  texte = '/' + max * '-' + '/\n'
   for i in range(len(table)):
-    texte = texte + str(table[i]) + '\n'
+    texte = texte + '/' + str(table[i]) + '\n/' + max * '-' + '/\n'
   return texte
 
 def affichage(texte, titre = "Requêtes tables"):
@@ -104,5 +118,6 @@ stocker_requete(12,a)
 stocker_requete(14,a)
 stocker_requete(15,a)
 #print(afficher(a))
-afficher_table(execute(1,a),a[1][0])
+requete(5,a)
 #print(execute(1,a))
+#print(taille_plus_grande_reponse(execute(1,a)))
