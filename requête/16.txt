@@ -1,4 +1,6 @@
 #17)Quel est le film le plus long ?
-Select primaryTitle from title_basics
+Select primaryTitle 
+from title_basics
 where runtimeMinutes in
-(Select max(runtimeMinutes) from title_basics)
+(Select max(runtimeMinutes) 
+from title_basics);

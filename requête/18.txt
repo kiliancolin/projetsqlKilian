@@ -1,7 +1,10 @@
 #18)Quels sont les titres des films les plus connus de Sean Connery ?
-Select primaryTitle from title_basics
+Select primaryTitle 
+from title_basics
 where tconst in
-(Select knownForTitles from name_titles
+(Select knownForTitles 
+from name_titles
 where nconst in
-(Select nconst from name_basics
+(Select nconst 
+from name_basics
 where primaryName = 'Sean Connery'))

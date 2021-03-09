@@ -1,15 +1,23 @@
-def execute(requete,dico):
+def execute(n,dico):
+    """
+    Prend en argument n, la position de la requête dans le dictionaire et dico le nom du dictionnaire.
+    Renvoie une liste dont chaque élément est une réponse de la requête.
+    """
     l = []
     import sqlite3
     conn = sqlite3.connect('imdb.db')
     c = conn.cursor()
-    c.execute(dico[requete][1])
+    c.execute(dico[n][1])
     for row in c:
         l.append(row)
     conn.close()
     return l
 
 def taille_plus_grande_reponse(reponses):
+    """
+    Prend en argument une liste.
+    Renvoie la taille du plus grand élément de la liste.
+    """
     l = reponses
     maxi = 0
     for i in range(len(l)):
@@ -18,6 +26,10 @@ def taille_plus_grande_reponse(reponses):
     return maxi
 
 def requete(n, dico):
+    """
+    prend en argument l'indice de la requête dans le dictionnaire et le nom du disctionnoire.
+    Ne renvoie rien.
+    """
     r = execute(n,dico)
     afficher_table(execute(n,dico),dico[n][0])
 
@@ -35,7 +47,7 @@ def texte_table(table, debut = 0, fin = None):
   max = taille_plus_grande_reponse(table)
   texte = '/' + max * '-' + '/\n'
   for i in range(len(table)):
-    texte = texte + '/' + str(table[i]) + '\n/' + max * '-' + '/\n'
+    texte = texte + '/' + str(table[i]) + (max - len(str(table[i]))) * ' ' + '/' + '\n/' + max * '-' + '/\n'
   return texte
 
 def affichage(texte, titre = "Requêtes tables"):
@@ -59,16 +71,21 @@ def affichage(texte, titre = "Requêtes tables"):
 
 def fichier_txt_en_texte(fichier):
     """
-    prend en argument le chemin d'un fichier texte et renvoie le contenu du fichier texte sous forme de chaîne de caractère.
+    prend en argument le chemin d'un fichier texte
+    Renvoie le contenu du fichier texte sous forme de chaîne de caractère.
     """
     with open(fichier, "r") as requete:
         return requete.read()
 
-def nom(n):
-    return "requête/" + str(n) + ".txt"
+def nom(nom, repertoire):
+    """
+    Prend en argument le nom du fichier où est stocké la requête et le nom du répertoire dans lequel est stocké la requête.
+    Renvoie le chemin de la requête.
+    """
+    return repertoire + "/" + nom + ".txt"
 
-def texte_en_liste(n):
-    requete = fichier_txt_en_texte(nom(n))
+def texte_en_liste(nom, repertoire):
+    requete = fichier_txt_en_texte(nom(n, repertoire))
     return requete.split()
 
 def liste_en_texte(liste):
@@ -80,11 +97,11 @@ def liste_en_texte(liste):
         texte = texte + str(liste[i]) + " "
     return texte
     
-def separer_requete_et_question(n):
+def separer_requete_et_question(n, repertoire):
     """
     prend en argument le numéro de la requête et renvoie la question et la requête sésparé.
     """
-    requete = texte_en_liste(n)  #transforme la requête en tableau
+    requete = texte_en_liste(n, repertoire)  #transforme la requête en tableau
     for i in range(len(requete)):   #cherche le moment où la question s'arrête et sépare la question de la requête
         if requete[i] == "?":
             question = requete[0:i+1]  #stock la question
@@ -96,28 +113,28 @@ def creer_dictionnaire_vide():
     dico = {}
     return dico
 
-def stocker_requete(n, dico):
-    requete = separer_requete_et_question(n)
+def stocker_requete(n, dico, repertoire):
+    requete = separer_requete_et_question(n, repertoire)
     dico[n] = [requete[0], requete[1]]
     
 def afficher(dico):
     return dico
 
 a = creer_dictionnaire_vide()
-stocker_requete(1,a)
-stocker_requete(2,a)
-stocker_requete(3,a)
-stocker_requete(4,a)
-stocker_requete(5,a)
-stocker_requete(6,a)
-stocker_requete(7,a)
-stocker_requete(8,a)
-stocker_requete(9,a)
-stocker_requete(11,a)
-stocker_requete(12,a)
-stocker_requete(14,a)
-stocker_requete(15,a)
+stocker_requete(1,a,'requête')
+stocker_requete(2,a,'requête')
+stocker_requete(3,a,'requête')
+stocker_requete(4,a,'requête')
+stocker_requete(5,a,'requête')
+stocker_requete(6,a,'requête')
+stocker_requete(7,a,'requête')
+stocker_requete(8,a,'requête')
+stocker_requete(9,a,'requête')
+stocker_requete(11,a,'requête')
+stocker_requete(12,a,'requête')
+stocker_requete(14,a,'requête')
+stocker_requete(15,a,'requête')
 #print(afficher(a))
-requete(5,a)
+requete(1,a)
 #print(execute(1,a))
 #print(taille_plus_grande_reponse(execute(1,a)))

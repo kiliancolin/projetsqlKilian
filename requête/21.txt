@@ -1,6 +1,9 @@
-Select primaryTitle from title_basics
+Select primaryTitle 
+from title_basics
 where tconst in
-(Select tconst from title_episode
+(Select tconst 
+from title_episode
 where parentTconst in
-(Select tconst from title_basics
+(Select tconst 
+from title_basics
 where primaryTitle = 'Game of Thrones'))
