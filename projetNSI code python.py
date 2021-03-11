@@ -77,15 +77,15 @@ def fichier_txt_en_texte(fichier):
     with open(fichier, "r") as requete:
         return requete.read()
 
-def nom(nom, repertoire):
+def chemin(nom, repertoire):
     """
     Prend en argument le nom du fichier où est stocké la requête et le nom du répertoire dans lequel est stocké la requête.
     Renvoie le chemin de la requête.
     """
-    return repertoire + "/" + nom + ".txt"
+    return repertoire + '/' + nom
 
-def texte_en_liste(nom, repertoire):
-    requete = fichier_txt_en_texte(nom(n, repertoire))
+def texte_en_liste(nom_requete, repertoire):
+    requete = fichier_txt_en_texte(chemin(nom_requete, repertoire))
     return requete.split()
 
 def liste_en_texte(liste):
@@ -97,11 +97,12 @@ def liste_en_texte(liste):
         texte = texte + str(liste[i]) + " "
     return texte
     
-def separer_requete_et_question(n, repertoire):
+def separer_requete_et_question(nom, repertoire):
     """
     prend en argument le numéro de la requête et renvoie la question et la requête sésparé.
     """
-    requete = texte_en_liste(n, repertoire)  #transforme la requête en tableau
+    requete = texte_en_liste(nom, repertoire)  #transforme la requête en tableau
+    question = ""
     for i in range(len(requete)):   #cherche le moment où la question s'arrête et sépare la question de la requête
         if requete[i] == "?":
             question = requete[0:i+1]  #stock la question
@@ -113,27 +114,23 @@ def creer_dictionnaire_vide():
     dico = {}
     return dico
 
-def stocker_requete(n, dico, repertoire):
-    requete = separer_requete_et_question(n, repertoire)
-    dico[n] = [requete[0], requete[1]]
+def nom_element_du_repertoire(repertoire):
+    path = "C:\\Users\\Elève\\Desktop\\projet NSI\\projetsqlKilian\\projetsqlKilian\\" + repertoire
+    nom_requete = os.listdir(path)
+    return nom_requete
+
+def stocker_requete(dico, repertoire):
+    liste = nom_element_du_repertoire(repertoire)
+    for i in range(len(liste)):
+        requete = separer_requete_et_question(liste[i], repertoire)
+        dico[i] = [requete[0], requete[1]]
+        
     
 def afficher(dico):
     return dico
 
 a = creer_dictionnaire_vide()
-stocker_requete(1,a,'requête')
-stocker_requete(2,a,'requête')
-stocker_requete(3,a,'requête')
-stocker_requete(4,a,'requête')
-stocker_requete(5,a,'requête')
-stocker_requete(6,a,'requête')
-stocker_requete(7,a,'requête')
-stocker_requete(8,a,'requête')
-stocker_requete(9,a,'requête')
-stocker_requete(11,a,'requête')
-stocker_requete(12,a,'requête')
-stocker_requete(14,a,'requête')
-stocker_requete(15,a,'requête')
+stocker_requete(a,'requête')
 #print(afficher(a))
 requete(1,a)
 #print(execute(1,a))
