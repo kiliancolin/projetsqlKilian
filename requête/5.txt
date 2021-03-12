@@ -1,4 +1,4 @@
-#5) Quel est le titre original du film 'Les dents de la mer' ?
+Quel est le titre original du film "Les dents de la mer" ?
 Select originalTitle 
 from title_basics
 where tconst in

@@ -1,4 +1,4 @@
-#7) Quels sont les films d’Olivier Nakache ?
+Quels sont les films d Olivier Nakache ?
 Select DISTINCT(primaryTitle)
 from title_basics
 where tconst in

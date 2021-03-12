@@ -1,4 +1,4 @@
-#17)Quel est le film le plus long ?
+Quel est le film le plus long ?
 Select primaryTitle 
 from title_basics
 where runtimeMinutes in

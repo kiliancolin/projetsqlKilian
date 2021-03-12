@@ -1,3 +1,3 @@
-#14) Combien de films durent plus de 3 heures ?
+Combien de films durent plus de 3 heures ?
 Select count(primaryTitle) from title_basics
 where titleType = 'movie' and runtimeMinutes > 180

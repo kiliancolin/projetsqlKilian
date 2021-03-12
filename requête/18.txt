@@ -1,4 +1,4 @@
-#18)Quels sont les titres des films les plus connus de Sean Connery ?
+Quels sont les titres des films les plus connus de Sean Connery ?
 Select primaryTitle 
 from title_basics
 where tconst in

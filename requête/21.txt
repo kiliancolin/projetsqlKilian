@@ -1,3 +1,4 @@
+Quels sont les noms des episodes de Game of Thrones ?
 Select primaryTitle 
 from title_basics
 where tconst in

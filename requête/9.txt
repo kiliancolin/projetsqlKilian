@@ -1,4 +1,4 @@
-#9) Qui a écrit le scénario du film Taxi sorti en 1998 ?
+Qui a ecrit le scenario du film Taxi sorti en 1998 ?
 Select primaryName
 from name_basics
 where nconst in

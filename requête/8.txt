@@ -1,4 +1,4 @@
-#8) Quel est le film ayant recueilli le plus de votes ?
+Quel est le film ayant recueilli le plus de votes ?
 Select primaryTitle
 from title_basics
 where tconst in

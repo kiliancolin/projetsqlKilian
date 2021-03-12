@@ -1,4 +1,4 @@
-#13) Quels sont les 10 films d’animation ayant reçu plus de 1000 votes les mieux notés ?
+Quels sont les 10 films d animation ayant recu plus de 1000 votes les mieux notes ?
 Select primaryTitle 
 from title_basics
 where genres like "%Animation%" and tconst in

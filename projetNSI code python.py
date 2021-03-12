@@ -25,14 +25,41 @@ def taille_plus_grande_reponse(reponses):
             maxi = len(str(l[i]))
     return maxi
 
-def requete(n, dico):
+"""affichage question"""""""""""""""""""""""""""
+from tkinter import *
+
+def question(dico):
     """
     prend en argument l'indice de la requête dans le dictionnaire et le nom du disctionnoire.
     Ne renvoie rien.
     """
+    l = []
+    for i in range(len(dico)):
+        l.append(dico[i][0])
+    affichage_question(dico,l)
+
+def afficher_question(table, titre ="", debut = 0, fin = None):
+    if titre != "":
+        titre += "\n\n" 
+    #print(titre + texte_table(table, debut, fin))
+    affichage_question(titre + texte_table(table, debut, fin), titre)
+
+def affichage_question(dico, texte, titre = "Question"):
+    fenetre = tkinter.Tk()
+    fenetre.title(titre)
+    for i in range(len(texte)):
+        def truc():
+            requete(i, dico)
+        bouton1=Button(fenetre, text=texte[i], command=truc)
+        bouton1.pack()
+
+
+    fenetre.mainloop()
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+def requete(n,dico):
     r = execute(n,dico)
     afficher_table(execute(n,dico),dico[n][0])
-
 
 import tkinter
 import os
@@ -116,14 +143,14 @@ def creer_dictionnaire_vide():
 
 def nom_element_du_repertoire(repertoire):
     path = "C:\\Users\\Elève\\Desktop\\projet NSI\\projetsqlKilian\\projetsqlKilian\\" + repertoire
-    nom_requete = os.listdir(path)
+    nom_requete = os.listdir(path)    
     return nom_requete
 
 def stocker_requete(dico, repertoire):
     liste = nom_element_du_repertoire(repertoire)
     for i in range(len(liste)):
         requete = separer_requete_et_question(liste[i], repertoire)
-        dico[i] = [requete[0], requete[1]]
+        dico[i] = ['#' + str(i+1) + ')' + requete[0], requete[1]]
         
     
 def afficher(dico):
@@ -132,6 +159,7 @@ def afficher(dico):
 a = creer_dictionnaire_vide()
 stocker_requete(a,'requête')
 #print(afficher(a))
-requete(1,a)
+question(a)
+#requete(a)
 #print(execute(1,a))
 #print(taille_plus_grande_reponse(execute(1,a)))
