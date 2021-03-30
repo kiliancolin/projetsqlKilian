@@ -1,0 +1,10 @@
+Quels sont les noms des episodes de Game of Thrones ?
+Select primaryTitle 
+from title_basics
+where tconst in
+(Select tconst 
+from title_episode
+where parentTconst in
+(Select tconst 
+from title_basics
+where primaryTitle = 'Game of Thrones'))

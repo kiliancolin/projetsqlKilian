@@ -1,0 +1,4 @@
+Quel est le metier d Olivier Nakache ?
+Select primaryProfession
+from name_basics
+where primaryName = 'Olivier Nakache';

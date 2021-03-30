@@ -174,7 +174,7 @@ def stocker_requete(dico, repertoire):
     liste = nom_element_du_repertoire(repertoire)
     for i in range(len(liste)):
         requete = separer_requete_et_question(liste[i], repertoire)
-        dico[i] = ['#' + str(i+1) + ')' + requete[0], requete[1]]
+        dico[i] = ['#' + str(i+1) + ') ' + requete[0], requete[1]]
         
     
 def afficher(dico):

@@ -1,0 +1,8 @@
+Quels sont les 10 films d animation ayant recu plus de 1000 votes les mieux notes ?
+Select primaryTitle 
+from title_basics
+where genres like '%Animation%' and tconst in
+(Select tconst from title_ratings
+where numVotes > 1000
+order by averageRating DESC)
+limit 10;
