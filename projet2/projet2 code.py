@@ -55,7 +55,7 @@ def creer_dictionnaire_vide():
 
 def nom_element_du_repertoire(repertoire):
     """
-    prend en argument le nom d'un répertoire ranger dans le dossier projet2.
+    prend en argument le nom d'un répertoire ranger dans le dossier projetsqlKilian.
     renvoie une liste dont chaque élément est le nom d'un des fichier du repertoir.
     """
     path = "C:\\laragon\\www\\projet2\\" + repertoire
@@ -81,10 +81,27 @@ def afficher(dico):
 a = creer_dictionnaire_vide()
 stocker_requete(a,"requete")
 
+def vider(repertoire, data):
+    """
+    Prend en argument repertoire le nom du répertoire qui doit être vidé et data un fichier/dossier qui ne doit pas être supprimé.
+    Ne renvoie rien.
+    """
+    i = nombre_requete(repertoire) - 1
+    liste = nom_element_du_repertoire(repertoire)
+    while i >= 0:
+        if liste[i] == data:
+            i = i - 1
+        os.remove(repertoire + "/" + liste[i])
+        i = i - 1
+
 def creer_fichier_python(dico,repertoire):
+    """
+    Prend en argument un dictionnaire de requête et un repertoire.
+    Remplit le répertoire avec des fichiers python dont les noms sont chaque indice du dictionnaire.
+    """
     for i in range(nombre_requete(repertoire)):
         question = str(dico[i][0])
-        with open(question[0:len(question)-2] + '.py','x') as requete:
+        with open("requete_python/" + question[0:len(question)-2] + '.py','w') as requete:
             requete.write("""#!"C:\winpython\python-3.8.5.amd64\python.exe"
 
 import sqlite3
@@ -127,8 +144,7 @@ sql= """ + '"' + str(dico[i][1]) + '"' + """
 run_sql(conn,sql)
 """)
 
-print(afficher(a))
-creer_fichier_python(a,"requete")
 #a = creer_dictionnaire_vide()
 #stocker_requete(a,'requete')
-#print(a[10][1])
+#creer_fichier_python(a,"requete")
+vider("requete_python", "data")
